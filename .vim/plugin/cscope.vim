@@ -30,7 +30,7 @@ if !exists('g:cscope_cmd')
   endif
 endif
 
-set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
+" set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i-
 
 function! s:ClearDBs()
   cs kill -1
