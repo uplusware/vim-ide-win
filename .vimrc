@@ -14,8 +14,8 @@ set nowrap
 set tags+=tags
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :NERDTreeToggle<CR>
-nmap <C-\>n :tnext<CR>
-nmap <C-\>p :tprev<CR>
+nmap <F3> :tnext<CR>
+nmap <S-F3> :tprev<CR>
 let g:tagbar_left = 1
 
 if has("cscope")
