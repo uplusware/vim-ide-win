@@ -1,10 +1,25 @@
-set showtabline=2
+colorscheme darkblue
 set nocompatible
-set tabstop=4
+set incsearch
+set guioptions+=b
+set showtabline=2
+set tabstop=4    
+set softtabstop=4
+set shiftwidth=4 
+set expandtab
+set smartindent
+set cindent
+set noswapfile
+set nobackup
+set nowritebackup
+syntax enable
 syntax on
 set number
+"set cursorcolumn
+set cursorline
+"highlight CursorLine
+"highlight CursorColumn guibg=blue guifg=NONE
 set hlsearch
-colorscheme darkblue
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_File_Fold_Auto_Close=1
 set nocp
@@ -12,16 +27,37 @@ filetype plugin on
 set completeopt=menu
 set nowrap
 set tags+=tags
+set cscopequickfix=s-,c-,d-,i-,t-,e-
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :NERDTreeToggle<CR>
-nmap <F3> :tnext<CR>
-nmap <S-F3> :tprev<CR>
-nmap <C-\>o :!gedit -s % &>/dev/null&<CR><CR>
+nmap <C-F3> :cnew<CR>
+nmap <C-S-F3> :col<CR>
+nmap <F3> :cnext<CR>
+nmap <S-F3> :cprev<CR>
+nmap <C-\>n :tabnew %<CR>
+nmap <C-\>o :!"/cygdrive/c/Program Files (x86)/Notepad++/notepad++.exe" -n<C-R>=line(".")<CR> -c<C-R>=col(".")<CR> "$(cygpath -w "%")"&<CR><CR>
 let g:tagbar_left = 1
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = 'right'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
+let g:ctrlp_user_command = 'find %s -type f'
+
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
 
 if has("cscope")
-
     set cscopetag
     set csto=0
     set cscopeverbose 
