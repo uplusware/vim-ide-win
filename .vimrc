@@ -16,7 +16,7 @@ syntax enable
 syntax on
 
 set number
-set cursorcolumn
+"set cursorcolumn
 set cursorline
 set hlsearch
 set nocompatible
@@ -36,6 +36,11 @@ set nocp
 set completeopt=menu
 set nowrap
 set tags+=tags
+
+set nobackup       " no backup files
+set noswapfile     " no swap files
+set nowritebackup  " only in case you don't want a backup file while editing
+set noundofile     " no undo files
 
 filetype plugin on
 
@@ -73,9 +78,11 @@ endif
 if g:os == "Darwin"
     nmap <F7> :!cscope -bqR;ctags -R --c++-kinds=+lpx --c-kinds=+lpx --fields=+iaS --extra=+q<CR>
 elseif g:os == "Linux"
-    nmap <F7> :!cscope -bqR; ctags -R --c++-kinds=+lpx --c-kinds=+lpx --fields=+iaS --extra=+q<CR>
+    nmap <F7> :!cscope -bqR;ctags -R --c++-kinds=+lpx --c-kinds=+lpx --fields=+iaS --extra=+q<CR>
 elseif g:os == "Windows"
-    nmap <F7> :!start cscope -bqR & ctags -R --c++-kinds=+lpx --c-kinds=+lpx --fields=+iaS --extra=+q<CR>
+    if executable("f7")
+        nmap <F7> :!start /B f7<CR><CR>
+    endif
     if executable("notepad++")
         nmap <C-\>o :!start "notepad++.exe" -n<C-R>=line(".")<CR> -c<C-R>=col(".")<CR> "%"<CR><CR>
     endif
