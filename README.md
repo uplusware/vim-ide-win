@@ -1,5 +1,4 @@
-# vim-ide
-vim scripts
+# vim-ide-win
 
 http://www.vim.org/scripts/script_search_results.php
 
